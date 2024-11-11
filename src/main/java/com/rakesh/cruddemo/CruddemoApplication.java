@@ -22,7 +22,7 @@ public class CruddemoApplication {
 //			findInstructor(appDAO);
 //			deleteInstructor(appDAO);
 //			findInstructorDetail(appDAO);
-			deleteInstructorDetail(appDAO);
+//			deleteInstructorDetail(appDAO);
 		};
 	}
 
