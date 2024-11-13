@@ -5,6 +5,7 @@ import com.rakesh.cruddemo.entity.Instructor;
 import com.rakesh.cruddemo.entity.InstructorDetail;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -71,5 +72,20 @@ public class AppDAOImpl implements AppDAO{
         List<Course> courses = query.getResultList();
 
         return  courses;
+    }
+
+    @Override
+    public Instructor findInstructorByIdJoinFetch(int theId){
+
+        //create query
+        TypedQuery<Instructor> query = entityManager.createQuery(
+                                        "select i from Instructor i"
+                                            + " JOIN FETCH i.courses"
+                                            + " where i.id = :data", Instructor.class);
+        query.setParameter("data", theId);
+
+        //execute query
+        Instructor instructor = query.getSingleResult();
+        return instructor;
     }
 }
