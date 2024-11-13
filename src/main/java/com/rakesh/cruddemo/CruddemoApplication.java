@@ -31,8 +31,22 @@ public class CruddemoApplication {
 //			findInstructorWithCourses(appDAO);
 //			findCoursesForInstructor(appDAO);
 //			findInstructorWithCoursesJoinFetch(appDAO);
-			updateInstructor(appDAO);
+//			updateInstructor(appDAO);
+			updateCourse(appDAO);
 		};
+	}
+
+	private void updateCourse(AppDAO appDAO) {
+		int theId = 10;
+
+		//find course
+		System.out.println("Updating the course id with: " + theId);
+		Course tempCourse = appDAO.findCourseById(theId);
+
+		//update Course
+		System.out.println("Updating the course: " + tempCourse);
+		tempCourse.setTitle("In the Beginning God created the Heavens and the Earth");
+		appDAO.update(tempCourse);
 	}
 
 	private void updateInstructor(AppDAO appDAO) {
