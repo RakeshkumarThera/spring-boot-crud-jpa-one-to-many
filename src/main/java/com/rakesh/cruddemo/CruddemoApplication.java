@@ -32,7 +32,9 @@ public class CruddemoApplication {
 //			findCoursesForInstructor(appDAO);
 //			findInstructorWithCoursesJoinFetch(appDAO);
 //			updateInstructor(appDAO);
-			updateCourse(appDAO);
+//			updateCourse(appDAO);
+
+			deleteInstructor(appDAO);
 		};
 	}
 
