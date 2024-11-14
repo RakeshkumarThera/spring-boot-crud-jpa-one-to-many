@@ -4,6 +4,7 @@ import com.rakesh.cruddemo.dao.AppDAO;
 import com.rakesh.cruddemo.entity.Course;
 import com.rakesh.cruddemo.entity.Instructor;
 import com.rakesh.cruddemo.entity.InstructorDetail;
+import com.rakesh.cruddemo.entity.Review;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -35,8 +36,37 @@ public class CruddemoApplication {
 //			updateCourse(appDAO);
 
 //			deleteInstructor(appDAO);
-			deleteCourse(appDAO);
+//			deleteCourse(appDAO);
+
+//			createCourseAndReviews(appDAO);
+			retrieveCourseAndReviews(appDAO);
 		};
+	}
+
+	private void retrieveCourseAndReviews(AppDAO appDAO) {
+		int theId = 10;
+
+		Course tempCourse = appDAO.findCourseAndReviewsByCourseId(theId);
+		System.out.println(tempCourse);
+		System.out.println(tempCourse.getReviews());
+	}
+
+	private void createCourseAndReviews(AppDAO appDAO) {
+		//create a course
+		Course tempCourse = new Course("Genesis");
+
+		//add some reviews
+		tempCourse.addReview(new Review("First Book of Bible"));
+		tempCourse.addReview(new Review("Book of Origins"));
+		tempCourse.addReview(new Review("Author is Moses breathed out by God"));
+
+		System.out.println("Saving the course");
+		System.out.println(tempCourse);
+		System.out.println(tempCourse.getReviews());
+		//save the course
+		appDAO.save(tempCourse);
+
+		System.out.println("Done!!");
 	}
 
 	private void deleteCourse(AppDAO appDAO) {
